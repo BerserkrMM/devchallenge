@@ -1,0 +1,13 @@
+version: "0.1"
+
+services:
+
+# Container with Microsoft SQL
+  dev-challenge-ms-db:
+    container_name: dev-challenge-ms-db
+    image: mcr.microsoft.com/mssql/server:2019-CU14-ubuntu-20.04
+    ports:
+      - "1432:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Passwrd#1

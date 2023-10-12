@@ -1,6 +1,5 @@
 package com.example.devchallenge.controller;
 
-import com.example.devchallenge.model.Cell;
 import com.example.devchallenge.model.RequestDto;
 import com.example.devchallenge.model.ResponseDto;
 import com.example.devchallenge.service.Service;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -57,7 +55,7 @@ public class Controller {
     }
 
     @GetMapping(value = "/{sheet_id}")
-    public ResponseEntity<Map<String,ResponseDto>> getAllInSheet(
+    public ResponseEntity<Map<String, ResponseDto>> getAllInSheet(
             @PathVariable("sheet_id") final String sheetId
     ) {
         var response = service.getAllInSheet(sheetId);

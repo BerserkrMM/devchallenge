@@ -51,7 +51,7 @@ public class Service {
 
     public Map<String, ResponseDto> getAllInSheet(final String sheetId) {
         var cellList = repository.findBySheet(sheetId);
-        if (cellList.isEmpty()) return new HashMap<String, ResponseDto>();
+        if (cellList.isEmpty()) return new HashMap<>();
 
         Map<String, ResponseDto> map = new HashMap<>();
         for (Cell cell : cellList) {

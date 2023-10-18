@@ -1,0 +1,6 @@
+FROM openjdk:17-jdk-slim
+ARG BUILD_PATH
+RUN echo ${BUILD_PATH}
+COPY ./${BUILD_PATH}/build/libs/*.jar app.jar
+EXPOSE 80
+CMD java -jar /app.jar

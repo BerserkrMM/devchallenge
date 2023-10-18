@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+
+# Container with Postgres SQL
+  dev-challenge-pg-db:
+    container_name: dev-challenge-pg-db
+    image: postgres:14.3-alpine
+    ports:
+      - "5431:5432"
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+# Container with Microsoft SQL
+#  dev-challenge-ms-db:
+#    container_name: dev-challenge-ms-db
+#    image: mcr.microsoft.com/mssql/server:2019-CU23-ubuntu-20.04
+#    ports:
+#      - "1433:1433"
+#    environment:
+#      - ACCEPT_EULA=Y
+#      - MSSQL_SA_PASSWORD=Passwrd#1
+
+# Server container
+  dev-challenge-server:
+    container_name: dev-challenge-server
+    build:
+      context: ../..
+      dockerfile: devchallenge/docker-devchallenge/Dockerfile
+      args:
+        BUILD_PATH: devchallenge
+    ports:
+      - "8080:80"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dev-challenge-pg-db:5432/postgres
+      - SERVER_PORT=80
+      - SERVER_ADDRESS=0.0.0.0

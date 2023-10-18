@@ -43,10 +43,7 @@ public class Service {
         if (cellOptional.isEmpty()) return new ResponseDto();
 
 
-        return ResponseDto.builder()
-                .value(cellOptional.get().getValue())
-                .result(cellOptional.get().getResult())
-                .build();
+        return new ResponseDto(cellOptional.get().getValue(), cellOptional.get().getResult());
     }
 
     public Map<String, ResponseDto> getAllInSheet(final String sheetId) {
@@ -62,7 +59,7 @@ public class Service {
     }
 
     private String resolveValue(final String sheetId, final String cellId, final String value) {
-        if (value.matches("=\\S*\\+\\S*")) {
+        if (value.matches("=\\S*")) {
 
             final String[] ids = value.substring(1).split("\\+");
             List<Integer> values = new ArrayList<>();
